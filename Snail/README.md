@@ -21,16 +21,59 @@ snail(array) #=> [1,2,3,4,5,6,7,8,9]
 ```
 This image will illustrate things more clearly:
 
-![Two matrix 3x3 and 4x4](Codewars_array_image.png)
-
+![Two matrixes 3x3 and 4x4](Codewars_array_image.png)
+<p align="center">
+    Image 1 Two matrixes 3x3 and 4x4
+</p>
 
 NOTE: The idea is not sort the elements from the lowest value to the highest; the idea is to traverse the 2-d array in a clockwise snailshell pattern.
 
 NOTE 2: The 0x0 (empty matrix) is represented as en empty array inside an array  `[[]]`.
 
-
-## Solution 1
+## Sulution 1
 File: [SnailSuccess.cpp](SnailSuccess.cpp)
+
+First, let's write the code to perform the special case (when the function gets an empty matrix). According to **NOTE 2**, an empty matrix is `[[]]`, i.e. an array containing one empty array. Thus, to check if the input matrix is empty, we need to check if the first element of `snail_map` has size 0. As a result, we get this code `if (snail_map[0].empty())return {};`. We can see from the test that if the function gets an empty matrix, it must return an empty array.
+
+In this solution we will use 4 cycles to move through the matrix. Let's break the matrix into snails (a snail is a sequence of 4 movements: left to right, top to bottom, right to left and bottom to top), you can see them on **Image 1**. So to move in this way, we will need 4 loops (each loop moves in one of the 4 directions) and after each iteration of the algorithm we will reduce the width and height of the matrix by 2 (1 element on each side). Also the algorithm ends when the resulting array will have the same size as the input array (we have copied all the elements).
+
+Code:
+```
+    if (snail_map[0].empty())return {};
+
+    std::vector<int> result;
+    int n = snail_map.size();
+    int k = 0;
+
+    while (result.size() != n * n)
+    {
+        k++;
+        for (int col = k - 1; col < n - k + 1; col++) // move from left to right
+        {
+            result.push_back(snail_map[k - 1][col]);
+        }
+
+        for (int row = k; row < n - k + 1; row++) // move from top to bottom
+        {
+            result.push_back(snail_map[row][n - k]);
+        }
+
+        for (int col = n - k - 1; col >= k - 1; col--) // move from right to left
+        {
+            result.push_back(snail_map[n - k][col]);
+        }
+
+        for (int row = n - k - 1; row >= k; row--) // move from bottom to top
+        {
+            result.push_back(snail_map[row][k - 1]);
+        }
+    }
+
+    return result;
+```
+
+## Solution 2
+File: [SnailExecutionTimeOut.cpp](SnailExecutionTimeOut.cpp)
 
 First, let's write the code to perform the special case (when the function gets an empty matrix). According to **NOTE 2**, an empty matrix is `[[]]`, i.e. an array containing one empty array. Thus, to check if the input matrix is empty, we need to check if the first element of `snail_map` has size 0. As a result, we get this code `if (snail_map[0].empty())return {};`. We can see from the test that if the function gets an empty matrix, it must return an empty array.
 
@@ -98,8 +141,3 @@ Code:
     }
     return result;
 ```
-
-## Solution 2
-File: SnailExecutionTimeOut.cpp
-
-
