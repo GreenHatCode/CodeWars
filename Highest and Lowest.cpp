@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+/* source link: https://www.codewars.com/kata/554b4ac871d6813a03000035 */
+
 std::string highAndLow(const std::string& numbers) {
     
     size_t pos = numbers.find(' ');
