@@ -1,6 +1,8 @@
 #include <vector>
 #include <algorithm>
 
+/* source link: https://www.codewars.com/kata/59f11118a5e129e591000134 */
+
 int repeats(std::vector<int>v) {
 
     std::sort(v.begin(), v.end());
