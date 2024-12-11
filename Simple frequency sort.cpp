@@ -1,7 +1,8 @@
-#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
+
+/* source link: https://www.codewars.com/kata/5a8d2bf60025e9163c0000bc */
 
 std::vector<int> solve(std::vector<int>& vec) {
     std::map<int, int> map;
@@ -11,11 +12,3 @@ std::vector<int> solve(std::vector<int>& vec) {
     std::sort(vec.begin(), vec.end(), [&](int a, int b) {return (map[a] > map[b]) || (map[a] == map[b] && a < b); });
     return vec;
 }
-
-
-int main()
-{
-    std::vector<int> v = { 5,9,6,9,6,5,9,9,4,4 };
-    solve(v);
-}
-
