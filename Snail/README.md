@@ -30,7 +30,7 @@ NOTE: The idea is not sort the elements from the lowest value to the highest; th
 
 NOTE 2: The 0x0 (empty matrix) is represented as en empty array inside an array  `[[]]`.
 
-## Sulution 1
+## Solution 1
 File: [SnailSuccess.cpp](SnailSuccess.cpp)
 
 First, let's write the code to perform the special case (when the function gets an empty matrix). According to **NOTE 2**, an empty matrix is `[[]]`, i.e. an array containing one empty array. Thus, to check if the input matrix is empty, we need to check if the first element of `snail_map` has size 0. As a result, we get this code `if (snail_map[0].empty())return {};`. We can see from the test that if the function gets an empty matrix, it must return an empty array.
